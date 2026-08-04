@@ -1,14 +1,14 @@
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 type ContainerProps = {
   children: ReactNode;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
-};
+  as?: ElementType;
+} & ComponentPropsWithoutRef<"div">;
 
-export function Container({ children, className = "", as: Component = "div" }: ContainerProps) {
+export function Container({ children, className = "", as: Component = "div", ...rest }: ContainerProps) {
   return (
-    <Component className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`.trim()}>
+    <Component className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`.trim()} {...rest}>
       {children}
     </Component>
   );

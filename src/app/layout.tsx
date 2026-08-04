@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { siteDescription, siteTitle } from "@/lib/branding";
+import { SupabaseProvider } from "@/providers/SupabaseProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -69,13 +70,15 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <div id="top" className="flex min-h-screen flex-col">
-          <Navbar />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <SupabaseProvider>
+          <div id="top" className="flex min-h-screen flex-col">
+            <Navbar />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </SupabaseProvider>
       </body>
     </html>
   );
